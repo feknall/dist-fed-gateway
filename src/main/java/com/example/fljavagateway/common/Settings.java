@@ -1,4 +1,4 @@
-package com.example.fljavagateway;
+package com.example.fljavagateway.common;
 
 import io.grpc.ManagedChannel;
 import io.grpc.netty.shaded.io.grpc.netty.GrpcSslContexts;
@@ -12,7 +12,6 @@ import org.hyperledger.fabric.client.identity.Signer;
 import org.hyperledger.fabric.client.identity.Signers;
 import org.hyperledger.fabric.client.identity.X509Identity;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -30,33 +29,36 @@ public abstract class Settings {
     @Value("${fl.channel.name}")
     private String channelName;
 
-    public static final String chaincodeName = "basic";
+    @Value("${fl.cert.path}")
+    private String certPath;
 
-    // Path to crypto materials.
+    @Value("${fl.key-dir.path}")
+    private String keyDirPath;
+
+    @Value("${fl.tls-cert.path}")
+    private String tlsCertPath;
+
+    public static final String chaincodeName = "dist-fed-chaincode";
 
     public abstract String getMspID();
     public abstract String getOrganization();
     public abstract String getPeerEndpoint();
 
-    private Path getCryptoPath() {
-        return Paths.get("/home/hamid/Documents/fabric-samples", "test-network", "organizations", "peerOrganizations", getOrganization());
-    }
-
     private Path getCertPath() {
-        return getCryptoPath().resolve(Paths.get("users", user + "@" + getOrganization(), "msp", "signcerts", "cert.pem"));
+        return Paths.get(certPath);
     }
 
     private Path getKeyDirPath() {
-        return getCryptoPath().resolve(Paths.get("users", user + "@" + getOrganization(), "msp", "keystore"));
+        return Paths.get(keyDirPath);
     }
 
     private Path getTlsCertPath() {
-        return getCryptoPath().resolve(Paths.get("peers", "peer0." + getOrganization(), "tls", "ca.crt"));
+        return Paths.get(tlsCertPath);
     }
 
     private final String overrideAuth = "peer0." + getOrganization();
 
-    public Gateway orgGateway() throws CertificateException, IOException, InvalidKeyException {
+    public Gateway getGateway() throws CertificateException, IOException, InvalidKeyException {
         var channel = newGrpcConnection();
 
         var builder = Gateway.newInstance()
@@ -72,11 +74,11 @@ public abstract class Settings {
     }
 
 
-    public Contract orgContract(Network orgNetwork) {
+    public Contract getContract(Network orgNetwork) {
         return orgNetwork.getContract(chaincodeName);
     }
 
-    public Network orgNetwork(Gateway org1Gateway) {
+    public Network getNetwork(Gateway org1Gateway) {
         return org1Gateway.getNetwork(channelName);
     }
 

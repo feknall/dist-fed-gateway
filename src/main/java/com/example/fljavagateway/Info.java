@@ -659,7 +659,7 @@ public final class Info {
   }
 
   public interface ModelSecretOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:com.example.fljavagateway.ModelSecret)
+      // @@protoc_insertion_point(interface_extends:com.example.fljavagateway.trainer.dto.ModelSecret)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -699,11 +699,11 @@ public final class Info {
     com.google.protobuf.ByteString getWeights2();
   }
   /**
-   * Protobuf type {@code com.example.fljavagateway.ModelSecret}
+   * Protobuf type {@code com.example.fljavagateway.trainer.dto.ModelSecret}
    */
   public static final class ModelSecret extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:com.example.fljavagateway.ModelSecret)
+      // @@protoc_insertion_point(message_implements:com.example.fljavagateway.trainer.dto.ModelSecret)
       ModelSecretOrBuilder {
   private static final long serialVersionUID = 0L;
     // Use ModelSecret.newBuilder() to construct.
@@ -1088,11 +1088,11 @@ public final class Info {
       return builder;
     }
     /**
-     * Protobuf type {@code com.example.fljavagateway.ModelSecret}
+     * Protobuf type {@code com.example.fljavagateway.trainer.dto.ModelSecret}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:com.example.fljavagateway.ModelSecret)
+        // @@protoc_insertion_point(builder_implements:com.example.fljavagateway.trainer.dto.ModelSecret)
         com.example.fljavagateway.Info.ModelSecretOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
@@ -1486,10 +1486,10 @@ public final class Info {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:com.example.fljavagateway.ModelSecret)
+      // @@protoc_insertion_point(builder_scope:com.example.fljavagateway.trainer.dto.ModelSecret)
     }
 
-    // @@protoc_insertion_point(class_scope:com.example.fljavagateway.ModelSecret)
+    // @@protoc_insertion_point(class_scope:com.example.fljavagateway.trainer.dto.ModelSecret)
     private static final com.example.fljavagateway.Info.ModelSecret DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new com.example.fljavagateway.Info.ModelSecret();

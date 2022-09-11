@@ -1,4 +1,4 @@
-package com.example.fljavagateway;
+package com.example.fljavagateway.event;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

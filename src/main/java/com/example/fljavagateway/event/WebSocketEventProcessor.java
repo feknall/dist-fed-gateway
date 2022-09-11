@@ -1,10 +1,11 @@
-package com.example.fljavagateway;
+package com.example.fljavagateway.event;
 
+import com.example.fljavagateway.Info;
+import com.example.fljavagateway.event.EventListener;
 import com.google.protobuf.ByteString;
 import org.hyperledger.fabric.client.ChaincodeEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.socket.BinaryMessage;
@@ -16,8 +17,6 @@ import java.io.IOException;
 public class WebSocketEventProcessor {
 
     private final Logger logger = LoggerFactory.getLogger(EventListener.class);
-    private final RestTemplate restTemplate = new RestTemplate();
-    private static final String baseUrl = "http://localhost:9090/events/";
 
     private WebSocketSession session;
 

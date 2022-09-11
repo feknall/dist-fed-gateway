@@ -1,5 +1,7 @@
-package com.example.fljavagateway;
+package com.example.fljavagateway.event;
 
+import com.example.fljavagateway.common.CommonBl;
+import com.example.fljavagateway.common.Settings;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 import org.hyperledger.fabric.client.ChaincodeEvent;
@@ -17,23 +19,19 @@ import java.util.concurrent.CompletableFuture;
 public class EventListener {
 
     private final Logger logger = LoggerFactory.getLogger(EventListener.class);
-    static final String ALL_SECRETS_RECEIVED_EVENT = "ALL_SECRETS_RECEIVED_EVENT";
-    static final String AGGREGATION_FINISHED_EVENT = "AGGREGATION_FINISHED_EVENT";
-    static final String ROUND_FINISHED_EVENT = "ROUND_FINISHED_EVENT";
-    static final String MODEL_SECRET_ADDED_EVENT = "MODEL_SECRET_ADDED_EVENT";
 
     private final Network network;
     private final WebSocketEventProcessor webSocketEventProcessor;
 
-    public EventListener(Network org1Network, WebSocketEventProcessor webSocketEventProcessor) {
-        this.network = org1Network;
+    public EventListener(CommonBl commonBl, WebSocketEventProcessor webSocketEventProcessor) {
+        this.network = commonBl.getNetwork();
         this.webSocketEventProcessor = webSocketEventProcessor;
     }
 
     @Bean
     public CloseableIterator<ChaincodeEvent> listen() {
         logger.info("Start listening for events...");
-        var eventIter = network.getChaincodeEvents(Org1Settings.chaincodeName);
+        var eventIter = network.getChaincodeEvents(Settings.chaincodeName);
         CompletableFuture.runAsync(() -> {
             eventIter.forEachRemaining(event -> {
                 CompletableFuture.runAsync(() -> {

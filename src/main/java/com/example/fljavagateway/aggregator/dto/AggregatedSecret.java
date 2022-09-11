@@ -2,7 +2,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package com.example.fljavagateway;
+package com.example.fljavagateway.aggregator.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
