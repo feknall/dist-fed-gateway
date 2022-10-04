@@ -41,14 +41,14 @@ public class AdminSettings extends Settings {
 
     @Bean(name = "adminContract")
     @Override
-    public Contract getContract(Network org1Network) {
-        return super.getContract(org1Network);
+    public Contract getContract(Network adminNetwork) {
+        return super.getContract(adminNetwork);
     }
 
     @Bean(name = "adminNetwork")
     @Override
-    public Network getNetwork(Gateway org1Gateway) {
-        return super.getNetwork(org1Gateway);
+    public Network getNetwork(Gateway adminGateway) {
+        return super.getNetwork(adminGateway);
     }
 
     @Bean(name = "adminGateway")

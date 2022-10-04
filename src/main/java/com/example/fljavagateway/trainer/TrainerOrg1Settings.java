@@ -40,14 +40,14 @@ public class TrainerOrg1Settings extends Settings {
 
     @Bean(name = "trainerOrg1Contract")
     @Override
-    public Contract getContract(Network org1Network) {
-        return super.getContract(org1Network);
+    public Contract getContract(Network trainerOrg1Network) {
+        return super.getContract(trainerOrg1Network);
     }
 
     @Bean(name = "trainerOrg1Network")
     @Override
-    public Network getNetwork(Gateway org1Gateway) {
-        return super.getNetwork(org1Gateway);
+    public Network getNetwork(Gateway trainerOrg1Gateway) {
+        return super.getNetwork(trainerOrg1Gateway);
     }
 
     @Bean(name = "trainerOrg1Gateway")
