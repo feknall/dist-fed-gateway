@@ -1,6 +1,7 @@
-package com.example.fljavagateway.aggregator;
+package com.example.fljavagateway.role.aggregator;
 
-import com.example.fljavagateway.aggregator.dto.AggregatedSecret;
+import com.example.fljavagateway.role.aggregator.dto.AggregatedSecret;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@ConditionalOnProperty(prefix = "fl", name = "role", havingValue = "aggregator")
 @RestController
 @RequestMapping("/aggregator")
 public class AggregatorRest {

@@ -1,4 +1,4 @@
-package com.example.fljavagateway.trainer;
+package com.example.fljavagateway.role.trainer;
 
 
 import com.example.fljavagateway.common.CommonBl;
@@ -7,11 +7,13 @@ import org.hyperledger.fabric.client.Contract;
 import org.hyperledger.fabric.client.GatewayException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@ConditionalOnProperty(prefix = "fl", name = "role", havingValue = "trainer")
 @Service
 public class TrainerBl {
 

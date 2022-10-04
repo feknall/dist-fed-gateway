@@ -23,26 +23,24 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class Settings {
 
-    @Value("${fl.user}")
-    private String user;
-
     @Value("${fl.channel.name}")
     private String channelName;
-
     @Value("${fl.cert.path}")
     private String certPath;
-
     @Value("${fl.key-dir.path}")
     private String keyDirPath;
-
     @Value("${fl.tls-cert.path}")
     private String tlsCertPath;
-
-    public static final String chaincodeName = "dist-fed-chaincode";
+    @Value("${fl.chaincode.name}")
+    private String chaincodeName = "dist-fed-chaincode";
 
     public abstract String getMspID();
     public abstract String getOrganization();
     public abstract String getPeerEndpoint();
+
+    public String getChaincodeName() {
+        return chaincodeName;
+    }
 
     private Path getCertPath() {
         return Paths.get(certPath);

@@ -19,7 +19,6 @@ import java.util.concurrent.CompletableFuture;
 public class EventListener {
 
     private final Logger logger = LoggerFactory.getLogger(EventListener.class);
-
     private final Network network;
     private final WebSocketEventProcessor webSocketEventProcessor;
 
@@ -29,9 +28,9 @@ public class EventListener {
     }
 
     @Bean
-    public CloseableIterator<ChaincodeEvent> listen() {
+    public CloseableIterator<ChaincodeEvent> listen(Settings settings) {
         logger.info("Start listening for events...");
-        var eventIter = network.getChaincodeEvents(Settings.chaincodeName);
+        var eventIter = network.getChaincodeEvents(settings.getChaincodeName());
         CompletableFuture.runAsync(() -> {
             eventIter.forEachRemaining(event -> {
                 CompletableFuture.runAsync(() -> {

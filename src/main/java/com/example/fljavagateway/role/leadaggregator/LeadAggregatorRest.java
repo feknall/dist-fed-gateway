@@ -1,6 +1,7 @@
-package com.example.fljavagateway.leadaggregator;
+package com.example.fljavagateway.role.leadaggregator;
 
-import com.example.fljavagateway.leadaggregator.dto.EndRoundModel;
+import com.example.fljavagateway.role.leadaggregator.dto.EndRoundModel;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@ConditionalOnProperty(prefix = "fl", name = "role", havingValue = "leadAggregator")
 @RestController
 @RequestMapping("/leadAggregator")
 public class LeadAggregatorRest {

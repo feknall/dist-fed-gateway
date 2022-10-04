@@ -2,7 +2,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package com.example.fljavagateway.leadaggregator.dto;
+package com.example.fljavagateway.role.leadaggregator.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.Gson;

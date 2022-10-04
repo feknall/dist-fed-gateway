@@ -1,6 +1,7 @@
-package com.example.fljavagateway.admin;
+package com.example.fljavagateway.role.admin;
 
-import com.example.fljavagateway.admin.dto.ModelMetadata;
+import com.example.fljavagateway.role.admin.dto.ModelMetadata;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@ConditionalOnProperty(prefix = "fl", name = "role", havingValue = "admin")
 @RestController
 @RequestMapping("/admin")
 public class AdminRest {

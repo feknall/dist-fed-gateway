@@ -1,10 +1,11 @@
-package com.example.fljavagateway.leadaggregator;
+package com.example.fljavagateway.role.aggregator;
 
 import com.example.fljavagateway.common.Settings;
 import org.hyperledger.fabric.client.Contract;
 import org.hyperledger.fabric.client.Gateway;
 import org.hyperledger.fabric.client.Network;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,16 +13,17 @@ import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.cert.CertificateException;
 
+@ConditionalOnProperty(prefix = "fl", name = "role", havingValue = "aggregator")
 @Configuration
-public class LeadAggregatorSettings extends Settings {
+public class AggregatorSettings extends Settings {
 
-    @Value("${leadAggregator.organization}")
+    @Value("${aggregator.organization}")
     private String organization;
 
-    @Value("${leadAggregator.msp.id}")
+    @Value("${aggregator.msp.id}")
     private String mspId;
 
-    @Value("${leadAggregator.peer.endpoint}")
+    @Value("${aggregator.peer.endpoint}")
     private String endpoint;
 
     @Override
@@ -39,19 +41,19 @@ public class LeadAggregatorSettings extends Settings {
         return endpoint;
     }
 
-    @Bean(name = "leadAggregatorContract")
+    @Bean(name = "aggregatorContract")
     @Override
-    public Contract getContract(Network leadAggregatorNetwork) {
-        return super.getContract(leadAggregatorNetwork);
+    public Contract getContract(Network aggregatorNetwork) {
+        return super.getContract(aggregatorNetwork);
     }
 
-    @Bean(name = "leadAggregatorNetwork")
+    @Bean(name = "aggregatorNetwork")
     @Override
-    public Network getNetwork(Gateway leadAggregatorGateway) {
-        return super.getNetwork(leadAggregatorGateway);
+    public Network getNetwork(Gateway aggregatorGateway) {
+        return super.getNetwork(aggregatorGateway);
     }
 
-    @Bean(name = "leadAggregatorGateway")
+    @Bean(name = "aggregatorGateway")
     @Override
     public Gateway getGateway() throws CertificateException, IOException, InvalidKeyException {
         return super.getGateway();

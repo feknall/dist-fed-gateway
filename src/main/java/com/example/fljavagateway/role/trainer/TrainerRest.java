@@ -1,6 +1,7 @@
-package com.example.fljavagateway.trainer;
+package com.example.fljavagateway.role.trainer;
 
-import com.example.fljavagateway.trainer.dto.ModelSecret;
+import com.example.fljavagateway.role.trainer.dto.ModelSecret;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@ConditionalOnProperty(prefix = "fl", name = "role", havingValue = "trainer")
 @RestController
 @RequestMapping("/trainer")
 public class TrainerRest {
