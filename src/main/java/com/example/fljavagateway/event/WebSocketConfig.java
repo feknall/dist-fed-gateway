@@ -1,6 +1,5 @@
 package com.example.fljavagateway.event;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
@@ -12,8 +11,11 @@ import org.springframework.web.socket.server.standard.ServletServerContainerFact
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
 
-    @Autowired
-    private WebSocketEventProcessor eventProcessor;
+    private final WebSocketEventProcessor eventProcessor;
+
+    public WebSocketConfig(WebSocketEventProcessor eventProcessor) {
+        this.eventProcessor = eventProcessor;
+    }
 
     @Bean
     public ServletServerContainerFactoryBean createWebsocketContainer() {

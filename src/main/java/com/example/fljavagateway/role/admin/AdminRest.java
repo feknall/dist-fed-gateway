@@ -1,8 +1,6 @@
 package com.example.fljavagateway.role.admin;
 
-import com.example.fljavagateway.common.IsAdminCondition;
 import com.example.fljavagateway.role.admin.dto.ModelMetadata;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

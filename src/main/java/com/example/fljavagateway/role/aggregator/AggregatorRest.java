@@ -1,8 +1,6 @@
 package com.example.fljavagateway.role.aggregator;
 
-import com.example.fljavagateway.common.IsAggregatorCondition;
 import com.example.fljavagateway.role.aggregator.dto.AggregatedSecret;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

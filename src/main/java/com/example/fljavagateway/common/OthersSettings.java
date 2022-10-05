@@ -1,12 +1,9 @@
 package com.example.fljavagateway.common;
 
-import com.example.fljavagateway.event.SocketHandler;
 import com.example.fljavagateway.role.trainer.TrainerOrg1Settings;
 import org.hyperledger.fabric.client.Contract;
 import org.hyperledger.fabric.client.Gateway;
 import org.hyperledger.fabric.client.Network;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;

@@ -1,9 +1,8 @@
-package com.example.fljavagateway.common;
+package com.example.fljavagateway.role.trainer;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.example.fljavagateway.common.RoleEnum;
 import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.ConditionContext;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 
 public class IsTrainerCondition implements Condition {

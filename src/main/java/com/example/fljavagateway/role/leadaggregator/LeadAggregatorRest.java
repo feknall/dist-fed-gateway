@@ -1,6 +1,5 @@
 package com.example.fljavagateway.role.leadaggregator;
 
-import com.example.fljavagateway.common.IsLeadAggregatorCondition;
 import com.example.fljavagateway.role.leadaggregator.dto.EndRoundModel;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.web.bind.annotation.GetMapping;

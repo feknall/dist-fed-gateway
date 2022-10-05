@@ -1,8 +1,6 @@
 package com.example.fljavagateway.role.trainer;
 
-import com.example.fljavagateway.common.IsTrainerCondition;
 import com.example.fljavagateway.role.trainer.dto.ModelSecret;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

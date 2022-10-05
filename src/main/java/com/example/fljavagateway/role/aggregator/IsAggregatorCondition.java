@@ -1,5 +1,6 @@
-package com.example.fljavagateway.common;
+package com.example.fljavagateway.role.aggregator;
 
+import com.example.fljavagateway.common.RoleEnum;
 import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.type.AnnotatedTypeMetadata;
