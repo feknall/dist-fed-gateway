@@ -1,6 +1,5 @@
 package com.example.fljavagateway.general;
 
-import com.example.fljavagateway.common.CommonBl;
 import org.hyperledger.fabric.client.Contract;
 import org.hyperledger.fabric.client.GatewayException;
 import org.slf4j.Logger;
@@ -12,8 +11,8 @@ public class GeneralBl {
     private final Logger logger = LoggerFactory.getLogger(GeneralBl.class);
     private final Contract contract;
 
-    public GeneralBl(CommonBl commonBl) {
-        this.contract = commonBl.getContract();
+    public GeneralBl(Contract contract) {
+        this.contract = contract;
     }
 
     public byte[] getTrainedModel(String modelId) {

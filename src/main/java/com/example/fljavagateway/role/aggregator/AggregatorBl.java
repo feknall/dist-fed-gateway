@@ -1,22 +1,25 @@
 package com.example.fljavagateway.role.aggregator;
 
-import com.example.fljavagateway.common.CommonBl;
+import com.example.fljavagateway.common.IsAdminCondition;
+import com.example.fljavagateway.common.IsAggregatorCondition;
+import com.example.fljavagateway.role.trainer.TrainerCommonBl;
 import org.hyperledger.fabric.client.CommitException;
 import org.hyperledger.fabric.client.Contract;
 import org.hyperledger.fabric.client.GatewayException;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@ConditionalOnProperty(prefix = "fl", name = "role", havingValue = "aggregator")
+@Conditional(IsAggregatorCondition.class)
 @Service
 public class AggregatorBl {
 
     private final Contract contract;
 
-    public AggregatorBl(CommonBl commonBl) {
-        this.contract = commonBl.getContract();
+    public AggregatorBl(Contract contract) {
+        this.contract = contract;
     }
 
     public byte[] addAggregatedSecret(String modelId, String weights) {
@@ -68,7 +71,7 @@ public class AggregatorBl {
     }
 
     public List<byte[]> getPersonalInfo() {
-        return CommonBl.getPersonalInfo(contract);
+        return TrainerCommonBl.getPersonalInfo(contract);
     }
 
 }

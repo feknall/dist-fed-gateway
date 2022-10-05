@@ -1,5 +1,6 @@
 package com.example.fljavagateway.role.trainer;
 
+import com.example.fljavagateway.common.IsTrainerCondition;
 import com.example.fljavagateway.common.Settings;
 import org.hyperledger.fabric.client.Contract;
 import org.hyperledger.fabric.client.Gateway;
@@ -7,13 +8,14 @@ import org.hyperledger.fabric.client.Network;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.cert.CertificateException;
 
-@ConditionalOnProperty(prefix = "fl", name = "role", havingValue = "trainer")
+@Conditional(IsTrainerCondition.class)
 @Configuration
 public class TrainerOrg2Settings extends Settings {
     @Value("${trainer.org2.organization}")

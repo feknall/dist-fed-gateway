@@ -1,19 +1,20 @@
 package com.example.fljavagateway.role.trainer;
 
 
-import com.example.fljavagateway.common.CommonBl;
+import com.example.fljavagateway.common.IsTrainerCondition;
 import org.hyperledger.fabric.client.CommitException;
 import org.hyperledger.fabric.client.Contract;
 import org.hyperledger.fabric.client.GatewayException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@ConditionalOnProperty(prefix = "fl", name = "role", havingValue = "trainer")
+@Conditional(IsTrainerCondition.class)
 @Service
 public class TrainerBl {
 
@@ -23,10 +24,10 @@ public class TrainerBl {
     private final Contract trainerOrg2Contract;
     private final Contract trainerContract;
 
-    public TrainerBl(Contract trainerOrg1Contract, Contract trainerOrg2Contract, CommonBl commonBl) {
+    public TrainerBl(Contract trainerOrg1Contract, Contract trainerOrg2Contract, Contract contract) {
         this.trainerOrg1Contract = trainerOrg1Contract;
         this.trainerOrg2Contract = trainerOrg2Contract;
-        this.trainerContract = commonBl.getContract();
+        this.trainerContract = contract;
     }
 
     public byte[] checkInTrainer() {

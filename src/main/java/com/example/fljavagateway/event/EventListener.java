@@ -1,6 +1,5 @@
 package com.example.fljavagateway.event;
 
-import com.example.fljavagateway.common.CommonBl;
 import com.example.fljavagateway.common.Settings;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
@@ -10,21 +9,18 @@ import org.hyperledger.fabric.client.Network;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.CompletableFuture;
 
-@Service
 public class EventListener {
-
     private final Logger logger = LoggerFactory.getLogger(EventListener.class);
-    private final Network network;
     private final WebSocketEventProcessor webSocketEventProcessor;
+    private final Network network;
 
-    public EventListener(CommonBl commonBl, WebSocketEventProcessor webSocketEventProcessor) {
-        this.network = commonBl.getNetwork();
+    public EventListener(WebSocketEventProcessor webSocketEventProcessor, Network network) {
         this.webSocketEventProcessor = webSocketEventProcessor;
+        this.network = network;
     }
 
     @Bean
@@ -51,5 +47,6 @@ public class EventListener {
         var parsedJson = JsonParser.parseString(json);
         return new GsonBuilder().setPrettyPrinting().create().toJson(parsedJson);
     }
+
 
 }

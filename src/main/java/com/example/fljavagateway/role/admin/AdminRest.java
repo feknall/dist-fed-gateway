@@ -1,7 +1,9 @@
 package com.example.fljavagateway.role.admin;
 
+import com.example.fljavagateway.common.IsAdminCondition;
 import com.example.fljavagateway.role.admin.dto.ModelMetadata;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@ConditionalOnProperty(prefix = "fl", name = "role", havingValue = "admin")
+@Conditional(IsAdminCondition.class)
 @RestController
 @RequestMapping("/admin")
 public class AdminRest {

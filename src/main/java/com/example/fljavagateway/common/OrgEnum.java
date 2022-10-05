@@ -9,7 +9,7 @@ public enum OrgEnum {
         this.value = value;
     }
 
-    public OrgEnum toEnum(String value) {
-        return OrgEnum.valueOf(value);
+    public static OrgEnum toEnum(String value) {
+        return value.equals("org1") ? OrgEnum.ORG1 : OrgEnum.ORG2;
     }
 }

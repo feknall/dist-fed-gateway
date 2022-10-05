@@ -1,13 +1,15 @@
 package com.example.fljavagateway.role.admin;
 
 import com.example.fljavagateway.common.ApiError;
-import com.example.fljavagateway.common.CommonBl;
+import com.example.fljavagateway.common.IsAdminCondition;
+import com.example.fljavagateway.role.trainer.TrainerCommonBl;
 import org.hyperledger.fabric.client.CommitException;
 import org.hyperledger.fabric.client.Contract;
 import org.hyperledger.fabric.client.EndorseException;
 import org.hyperledger.fabric.client.GatewayException;
 import org.hyperledger.fabric.protos.gateway.ErrorDetail;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,14 +17,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@ConditionalOnProperty(prefix = "fl", name = "role", havingValue = "admin")
+@Conditional(IsAdminCondition.class)
 @Service
 public class AdminBl {
 
     private final Contract contract;
 
-    public AdminBl(CommonBl commonBl) {
-        this.contract = commonBl.getContract();
+    public AdminBl(Contract contract) {
+        this.contract = contract;
     }
 
     public byte[] initLedger() {
@@ -71,7 +73,7 @@ public class AdminBl {
     }
 
     public List<byte[]> getPersonalInfo() {
-        return CommonBl.getPersonalInfo(contract);
+        return TrainerCommonBl.getPersonalInfo(contract);
     }
 
 }

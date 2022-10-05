@@ -1,7 +1,8 @@
 package com.example.fljavagateway.role.leadaggregator;
 
+import com.example.fljavagateway.common.IsLeadAggregatorCondition;
 import com.example.fljavagateway.role.leadaggregator.dto.EndRoundModel;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@ConditionalOnProperty(prefix = "fl", name = "role", havingValue = "leadAggregator")
+@Conditional(IsLeadAggregatorCondition.class)
 @RestController
 @RequestMapping("/leadAggregator")
 public class LeadAggregatorRest {
