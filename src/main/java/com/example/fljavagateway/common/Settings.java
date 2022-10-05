@@ -25,33 +25,19 @@ public abstract class Settings {
 
     @Value("${fl.channel.name}")
     private String channelName;
-    @Value("${fl.cert.path}")
-    private String certPath;
-    @Value("${fl.key-dir.path}")
-    private String keyDirPath;
-    @Value("${fl.tls-cert.path}")
-    private String tlsCertPath;
+
     @Value("${fl.chaincode.name}")
     private String chaincodeName = "dist-fed-chaincode";
 
     public abstract String getMspID();
     public abstract String getOrganization();
     public abstract String getPeerEndpoint();
+    public abstract String getCertPath();
+    public abstract String getKeyDirPath();
+    public abstract String getTlsCertPath();
 
     public String getChaincodeName() {
         return chaincodeName;
-    }
-
-    private Path getCertPath() {
-        return Paths.get(certPath);
-    }
-
-    private Path getKeyDirPath() {
-        return Paths.get(keyDirPath);
-    }
-
-    private Path getTlsCertPath() {
-        return Paths.get(tlsCertPath);
     }
 
     private final String overrideAuth = "peer0." + getOrganization();
@@ -81,14 +67,14 @@ public abstract class Settings {
     }
 
     private Identity newIdentity() throws IOException, CertificateException {
-        var certReader = Files.newBufferedReader(getCertPath());
+        var certReader = Files.newBufferedReader(Paths.get(getCertPath()));
         var certificate = Identities.readX509Certificate(certReader);
 
         return new X509Identity(getMspID(), certificate);
     }
 
     private ManagedChannel newGrpcConnection() throws IOException, CertificateException {
-        var tlsCertReader = Files.newBufferedReader(getTlsCertPath());
+        var tlsCertReader = Files.newBufferedReader(Paths.get(getTlsCertPath()));
         var tlsCert = Identities.readX509Certificate(tlsCertReader);
 
         return NettyChannelBuilder.forTarget(getPeerEndpoint())
@@ -106,7 +92,7 @@ public abstract class Settings {
     }
 
     private Path getPrivateKeyPath() throws IOException {
-        try (var keyFiles = Files.list(getKeyDirPath())) {
+        try (var keyFiles = Files.list(Paths.get(getKeyDirPath()))) {
             return keyFiles.findFirst().orElseThrow();
         }
     }

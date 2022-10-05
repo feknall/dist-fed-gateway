@@ -23,6 +23,7 @@ public class TrainerBl {
     private final Contract trainerContract;
 
     public TrainerBl(Contract trainerOrg1Contract, Contract trainerOrg2Contract, Contract contract) {
+        logger.info("Role: trainer");
         this.trainerOrg1Contract = trainerOrg1Contract;
         this.trainerOrg2Contract = trainerOrg2Contract;
         this.trainerContract = contract;

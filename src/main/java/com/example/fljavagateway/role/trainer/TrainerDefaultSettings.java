@@ -16,7 +16,7 @@ public class TrainerDefaultSettings {
     private final Contract contract;
     private final Network network;
 
-    public TrainerDefaultSettings(@Value("${trainer.org}") String trainerOrg,
+    public TrainerDefaultSettings(@Value("${trainer.org.default}") String trainerOrg,
                                   Contract trainerOrg1Contract, Contract trainerOrg2Contract,
                                   Network trainerOrg1Network, Network trainerOrg2Network) {
         ContractNetworkPair pair = getDefaultContractNetwork(trainerOrg1Contract, trainerOrg2Contract,

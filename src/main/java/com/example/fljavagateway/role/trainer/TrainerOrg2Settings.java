@@ -16,12 +16,17 @@ import java.security.cert.CertificateException;
 @Conditional(IsTrainerCondition.class)
 @Configuration
 public class TrainerOrg2Settings extends Settings {
+
+    @Value("${trainer.org2.cert.path}")
+    private String certPath;
+    @Value("${trainer.org2.key-dir.path}")
+    private String keyDirPath;
+    @Value("${trainer.org2.tls-cert.path}")
+    private String tlsCertPath;
     @Value("${trainer.org2.organization}")
     private String organization;
-
     @Value("${trainer.org2.msp.id}")
     private String mspId;
-
     @Value("${trainer.org2.peer.endpoint}")
     private String endpoint;
 
@@ -38,6 +43,21 @@ public class TrainerOrg2Settings extends Settings {
     @Override
     public String getPeerEndpoint() {
         return endpoint;
+    }
+
+    @Override
+    public String getCertPath() {
+        return certPath;
+    }
+
+    @Override
+    public String getKeyDirPath() {
+        return keyDirPath;
+    }
+
+    @Override
+    public String getTlsCertPath() {
+        return tlsCertPath;
     }
 
     @Bean(name = "trainerOrg2Contract")

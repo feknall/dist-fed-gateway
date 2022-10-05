@@ -17,6 +17,13 @@ import java.security.cert.CertificateException;
 @Configuration
 public class OthersSettings extends Settings {
 
+    @Value("${others.cert.path}")
+    private String certPath;
+    @Value("${others.key-dir.path}")
+    private String keyDirPath;
+    @Value("${others.tls-cert.path}")
+    private String tlsCertPath;
+
     @Value("${others.org}")
     private String organization;
 
@@ -39,6 +46,21 @@ public class OthersSettings extends Settings {
     @Override
     public String getPeerEndpoint() {
         return endpoint;
+    }
+
+    @Override
+    public String getCertPath() {
+        return certPath;
+    }
+
+    @Override
+    public String getKeyDirPath() {
+        return keyDirPath;
+    }
+
+    @Override
+    public String getTlsCertPath() {
+        return tlsCertPath;
     }
 
     @Bean(name = "contract")

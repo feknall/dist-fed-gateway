@@ -4,6 +4,8 @@ import com.example.fljavagateway.common.CommonBl;
 import org.hyperledger.fabric.client.CommitException;
 import org.hyperledger.fabric.client.Contract;
 import org.hyperledger.fabric.client.GatewayException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +14,11 @@ import java.util.List;
 @Conditional(IsAggregatorCondition.class)
 @Service
 public class AggregatorBl {
-
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final Contract contract;
 
     public AggregatorBl(Contract contract) {
+        logger.info("Role: aggregator");
         this.contract = contract;
     }
 
