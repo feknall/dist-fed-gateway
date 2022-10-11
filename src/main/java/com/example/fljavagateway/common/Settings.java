@@ -40,8 +40,6 @@ public abstract class Settings {
         return chaincodeName;
     }
 
-    private final String overrideAuth = "peer0." + getOrganization();
-
     public Gateway getGateway() throws CertificateException, IOException, InvalidKeyException {
         var channel = newGrpcConnection();
 
@@ -79,7 +77,7 @@ public abstract class Settings {
 
         return NettyChannelBuilder.forTarget(getPeerEndpoint())
                 .sslContext(GrpcSslContexts.forClient().trustManager(tlsCert).build())
-                .overrideAuthority(overrideAuth)
+                .overrideAuthority("peer0." + getOrganization())
                 .maxInboundMessageSize(4 * 4194304)
                 .build();
     }

@@ -53,7 +53,7 @@ public class AggregatorRest {
     }
 
     @GetMapping("/getPersonalInfo")
-    public List<byte[]> getPersonalInfo() {
+    public byte[] getPersonalInfo() {
         return aggregatorBl.getPersonalInfo();
     }
 }

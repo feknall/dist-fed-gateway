@@ -1,8 +1,6 @@
 package com.example.fljavagateway.role.admin;
 
 import com.example.fljavagateway.common.ApiError;
-import com.example.fljavagateway.common.CommonBl;
-import com.example.fljavagateway.general.GeneralBl;
 import org.hyperledger.fabric.client.CommitException;
 import org.hyperledger.fabric.client.Contract;
 import org.hyperledger.fabric.client.EndorseException;
@@ -74,8 +72,12 @@ public class AdminBl {
         }
     }
 
-    public List<byte[]> getPersonalInfo() {
-        return CommonBl.getPersonalInfo(contract);
+    public byte[] getPersonalInfo() {
+        try {
+            return contract.evaluateTransaction("getPersonalInfo");
+        } catch (GatewayException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

@@ -14,12 +14,12 @@ import java.util.List;
 
 @Conditional(IsAdminCondition.class)
 @RestController
-@RequestMapping("/admin")
-public class AdminRest {
+@RequestMapping("/flAdmin")
+public class FlAdminRest {
     
     private final AdminBl adminBl;
 
-    public AdminRest(AdminBl adminBl) {
+    public FlAdminRest(AdminBl adminBl) {
         this.adminBl = adminBl;
     }
 
@@ -48,7 +48,7 @@ public class AdminRest {
     }
 
     @GetMapping("/getPersonalInfo")
-    public List<byte[]> getPersonalInfo() {
+    public byte[] getPersonalInfo() {
         return adminBl.getPersonalInfo();
     }
 

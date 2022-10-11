@@ -4,6 +4,8 @@ import com.example.fljavagateway.common.Settings;
 import org.hyperledger.fabric.client.Contract;
 import org.hyperledger.fabric.client.Gateway;
 import org.hyperledger.fabric.client.Network;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
@@ -16,6 +18,8 @@ import java.security.cert.CertificateException;
 @Conditional(IsTrainerCondition.class)
 @Configuration
 public class TrainerOrg2Settings extends Settings {
+
+    private final Logger logger = LoggerFactory.getLogger(TrainerOrg2Settings.class);
 
     @Value("${trainer.org2.cert.path}")
     private String certPath;
@@ -32,31 +36,37 @@ public class TrainerOrg2Settings extends Settings {
 
     @Override
     public String getMspID() {
+        logger.info("SETTINGS mspId: {}", mspId);
         return mspId;
     }
 
     @Override
     public String getOrganization() {
+        logger.info("SETTINGS organization: {}", organization);
         return organization;
     }
 
     @Override
     public String getPeerEndpoint() {
+        logger.info("SETTINGS endpoint: {}", endpoint);
         return endpoint;
     }
 
     @Override
     public String getCertPath() {
+        logger.info("SETTINGS certPath: {}", certPath);
         return certPath;
     }
 
     @Override
     public String getKeyDirPath() {
+        logger.info("SETTINGS keyDirPath: {}", keyDirPath);
         return keyDirPath;
     }
 
     @Override
     public String getTlsCertPath() {
+        logger.info("SETTINGS tlsCertPath: {}", tlsCertPath);
         return tlsCertPath;
     }
 

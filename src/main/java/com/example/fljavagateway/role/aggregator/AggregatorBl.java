@@ -1,6 +1,5 @@
 package com.example.fljavagateway.role.aggregator;
 
-import com.example.fljavagateway.common.CommonBl;
 import org.hyperledger.fabric.client.CommitException;
 import org.hyperledger.fabric.client.Contract;
 import org.hyperledger.fabric.client.GatewayException;
@@ -70,8 +69,12 @@ public class AggregatorBl {
         }
     }
 
-    public List<byte[]> getPersonalInfo() {
-        return CommonBl.getPersonalInfo(contract);
+    public byte[] getPersonalInfo() {
+        try {
+            return contract.evaluateTransaction("getPersonalInfo");
+        } catch (GatewayException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
