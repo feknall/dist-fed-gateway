@@ -11,6 +11,8 @@ import org.hyperledger.fabric.client.identity.Identity;
 import org.hyperledger.fabric.client.identity.Signer;
 import org.hyperledger.fabric.client.identity.Signers;
 import org.hyperledger.fabric.client.identity.X509Identity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.io.IOException;
@@ -23,6 +25,8 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class Settings {
 
+    private final Logger logger = LoggerFactory.getLogger(Settings.class);
+
     @Value("${fl.channel.name}")
     private String channelName;
 
@@ -30,10 +34,15 @@ public abstract class Settings {
     private String chaincodeName = "dist-fed-chaincode";
 
     public abstract String getMspID();
+
     public abstract String getOrganization();
+
     public abstract String getPeerEndpoint();
+
     public abstract String getCertPath();
+
     public abstract String getKeyDirPath();
+
     public abstract String getTlsCertPath();
 
     public String getChaincodeName() {
@@ -56,12 +65,12 @@ public abstract class Settings {
     }
 
 
-    public Contract getContract(Network orgNetwork) {
-        return orgNetwork.getContract(chaincodeName);
+    public Contract getContract(Network network) {
+        return network.getContract(chaincodeName);
     }
 
-    public Network getNetwork(Gateway org1Gateway) {
-        return org1Gateway.getNetwork(channelName);
+    public Network getNetwork(Gateway gateway) {
+        return gateway.getNetwork(channelName);
     }
 
     private Identity newIdentity() throws IOException, CertificateException {
@@ -75,9 +84,12 @@ public abstract class Settings {
         var tlsCertReader = Files.newBufferedReader(Paths.get(getTlsCertPath()));
         var tlsCert = Identities.readX509Certificate(tlsCertReader);
 
+        String overrideAuth = "peer0." + getOrganization();
+        logger.info("OverrideAuth: {}", overrideAuth);
+
         return NettyChannelBuilder.forTarget(getPeerEndpoint())
                 .sslContext(GrpcSslContexts.forClient().trustManager(tlsCert).build())
-                .overrideAuthority("peer0." + getOrganization())
+                .overrideAuthority(overrideAuth)
                 .maxInboundMessageSize(4 * 4194304)
                 .build();
     }
