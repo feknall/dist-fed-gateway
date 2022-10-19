@@ -1,6 +1,6 @@
 --fl.role=flAdmin
---others.cert.path=/home/hamid/Documents/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/cert.pem
---others.key-dir.path=/home/hamid/Documents/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore
+--others.cert.path=/home/hamid/Documents/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/flAdmin1@org2.example.com/msp/signcerts/cert.pem
+--others.key-dir.path=/home/hamid/Documents/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/flAdmin1@org2.example.com/msp/keystore
 --others.tls-cert.path=/home/hamid/Documents/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
 --server.port=8083
 --others.organization=org2.example.com
