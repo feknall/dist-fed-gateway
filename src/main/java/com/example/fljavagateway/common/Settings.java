@@ -45,6 +45,8 @@ public abstract class Settings {
 
     public abstract String getTlsCertPath();
 
+
+
     public String getChaincodeName() {
         return chaincodeName;
     }
@@ -86,6 +88,7 @@ public abstract class Settings {
 
         String overrideAuth = "peer0." + getOrganization();
         logger.info("OverrideAuth: {}", overrideAuth);
+
 
         return NettyChannelBuilder.forTarget(getPeerEndpoint())
                 .sslContext(GrpcSslContexts.forClient().trustManager(tlsCert).build())
