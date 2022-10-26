@@ -73,9 +73,11 @@ services:
       - "--trainer.org1.cert.path=/credential/org1.example.com/users/Trainer1@org1.example.com/msp/signcerts/cert.pem"
       - "--trainer.org1.key-dir.path=/credential/org1.example.com/users/Trainer1@org1.example.com/msp/keystore"
       - "--trainer.org1.tls-cert.path=/credential/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
+      - "--trainer.org1.organization=org1.example.com"
       - "--trainer.org2.cert.path=/credential/org2.example.com/users/Trainer1@org2.example.com/msp/signcerts/cert.pem"
       - "--trainer.org2.key-dir.path=/credential/org2.example.com/users/Trainer1@org2.example.com/msp/keystore"
       - "--trainer.org2.tls-cert.path=/credential/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
+      - "--trainer.org2.organization=org2.example.com"
       - "--server.port=8080"
     ports:
       - "8080:8080"
@@ -91,9 +93,12 @@ services:
       - "--trainer.org1.cert.path=/credential/org1.example.com/users/Trainer2@org1.example.com/msp/signcerts/cert.pem"
       - "--trainer.org1.key-dir.path=/credential/org1.example.com/users/Trainer2@org1.example.com/msp/keystore"
       - "--trainer.org1.tls-cert.path=/credential/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
+      - "--trainer.org1.organization=org1.example.com"
       - "--trainer.org2.cert.path=/credential/org2.example.com/users/Trainer2@org2.example.com/msp/signcerts/cert.pem"
       - "--trainer.org2.key-dir.path=/credential/org2.example.com/users/Trainer2@org2.example.com/msp/keystore"
       - "--trainer.org2.tls-cert.path=/credential/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
+      - "--trainer.org2.organization=org2.example.com"
       - "--server.port=8081"
+
     ports:
       - "8081:8081"

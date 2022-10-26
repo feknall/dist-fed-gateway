@@ -9,13 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @Conditional(IsLeadAggregatorCondition.class)
 @RestController
 @RequestMapping("/leadAggregator")
 public class LeadAggregatorRest {
-    
+
     private final LeadAggregatorBl leadAggregatorBl;
 
     public LeadAggregatorRest(LeadAggregatorBl leadAggregatorBl) {
@@ -47,7 +45,7 @@ public class LeadAggregatorRest {
     public byte[] getAggregatedSecretListForCurrentRound(@RequestParam String modelId) {
         return leadAggregatorBl.getAggregatedSecretListForCurrentRound(modelId);
     }
-    
+
     @PostMapping("/checkInLeadAggregator")
     public byte[] checkInLeadAggregator() {
         return leadAggregatorBl.checkInLeadAggregator();
