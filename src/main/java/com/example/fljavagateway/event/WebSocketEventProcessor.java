@@ -35,6 +35,7 @@ public class WebSocketEventProcessor {
     public void sendEvent(ChaincodeEvent event) {
         try {
             session.sendMessage(new BinaryMessage(toByteArray(event)));
+            logger.debug("a message sent.");
         } catch (IOException e) {
             logger.debug("sendEvent failed", e);
             throw new RuntimeException(e);

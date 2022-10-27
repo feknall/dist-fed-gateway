@@ -1,78 +1,5 @@
 version: "3.9"
 services:
-  aggregator-org1:
-    container_name: aggregator.org1.example.com
-    image: dist-fed-gateway:latest
-    labels:
-      service: aggregator-dist-fed-gateway
-    volumes:
-      - ${DIST_FED_GATEWAY_CREDENTIAL_HOME}:/credential
-    command:
-      - "--fl.role=aggregator"
-      - "--others.cert.path=/credential/org1.example.com/users/Aggregator1@org1.example.com/msp/signcerts/cert.pem"
-      - "--others.key-dir.path=/credential/org1.example.com/users/Aggregator1@org1.example.com/msp/keystore"
-      - "--others.tls-cert.path=/credential/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
-      - "--others.organization=org1.example.com"
-      - "--others.msp.id=Org1MSP"
-      - "--others.peer.endpoint=localhost:9051"
-      - "--server.port=8091"
-    ports:
-      - "8091:8091"
-    network_mode: "host"
-  aggregator-org2:
-    container_name: aggregator.org2.example.com
-    image: dist-fed-gateway:latest
-    labels:
-      service: aggregator-dist-fed-gateway
-    volumes:
-      - ${DIST_FED_GATEWAY_CREDENTIAL_HOME}:/credential
-    command:
-      - "--fl.role=aggregator"
-      - "--others.cert.path=/credential/org2.example.com/users/Aggregator1@org2.example.com/msp/signcerts/cert.pem"
-      - "--others.key-dir.path=/credential/org2.example.com/users/Aggregator1@org2.example.com/msp/keystore"
-      - "--others.tls-cert.path=/credential/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
-      - "--others.organization=org2.example.com"
-      - "--others.msp.id=Org2MSP"
-      - "--others.peer.endpoint=localhost:9051"
-      - "--server.port=8092"
-    ports:
-      - "8092:8092"
-    network_mode: "host"
-  flAdmin:
-    container_name: admin.org2.example.com
-    image: dist-fed-gateway:latest
-    labels:
-      service: admin-dist-fed-gateway
-    volumes:
-      - ${DIST_FED_GATEWAY_CREDENTIAL_HOME}:/credential
-    command:
-      - "--fl.role=flAdmin"
-      - "--others.cert.path=/credential/org2.example.com/users/Admin@org2.example.com/msp/signcerts/cert.pem"
-      - "--others.key-dir.path=/credential/org2.example.com/users/Admin@org2.example.com/msp/keystore"
-      - "--others.tls-cert.path=/credential/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
-      - "--others.organization=org2.example.com"
-      - "--others.msp.id=Org2MSP"
-      - "--others.peer.endpoint=localhost:9051"
-      - "--server.port=8083"
-    ports:
-      - "8083:8083"
-    network_mode: "host"
-  leadAggregator:
-    container_name: leadAggregator.org2.example.com
-    image: dist-fed-gateway:latest
-    labels:
-      service: leadAggregator-dist-fed-gateway
-    volumes:
-      - ${DIST_FED_GATEWAY_CREDENTIAL_HOME}:/credential
-    command:
-      - "--fl.role=leadAggregator"
-      - "--others.cert.path=/credential/org2.example.com/users/LeadAggregator1@org2.example.com/msp/signcerts/cert.pem"
-      - "--others.key-dir.path=/credential/org2.example.com/users/LeadAggregator1@org2.example.com/msp/keystore"
-      - "--others.tls-cert.path=/credential/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
-      - "--server.port=8082"
-    ports:
-      - "8082:8082"
-    network_mode: "host"
   trainer01:
     container_name: trainer01.example.com
     image: dist-fed-gateway:latest
@@ -115,4 +42,80 @@ services:
       - "--server.port=8081"
     ports:
       - "8081:8081"
+    network_mode: "host"
+  aggregatorOrg1:
+    container_name: aggregator.org1.example.com
+    image: dist-fed-gateway:latest
+    labels:
+      service: aggregator-dist-fed-gateway
+    volumes:
+      - ${DIST_FED_GATEWAY_CREDENTIAL_HOME}:/credential
+    command:
+      - "--fl.role=aggregator"
+      - "--others.cert.path=/credential/org1.example.com/users/Aggregator1@org1.example.com/msp/signcerts/cert.pem"
+      - "--others.key-dir.path=/credential/org1.example.com/users/Aggregator1@org1.example.com/msp/keystore"
+      - "--others.tls-cert.path=/credential/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
+      - "--others.organization=org1.example.com"
+      - "--others.msp.id=Org1MSP"
+      - "--others.peer.endpoint=localhost:7051"
+      - "--server.port=8091"
+    ports:
+      - "8091:8091"
+    network_mode: "host"
+  aggregatorOrg2:
+    container_name: aggregator.org2.example.com
+    image: dist-fed-gateway:latest
+    labels:
+      service: aggregator-dist-fed-gateway
+    volumes:
+      - ${DIST_FED_GATEWAY_CREDENTIAL_HOME}:/credential
+    command:
+      - "--fl.role=aggregator"
+      - "--others.cert.path=/credential/org2.example.com/users/Aggregator1@org2.example.com/msp/signcerts/cert.pem"
+      - "--others.key-dir.path=/credential/org2.example.com/users/Aggregator1@org2.example.com/msp/keystore"
+      - "--others.tls-cert.path=/credential/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
+      - "--others.organization=org2.example.com"
+      - "--others.msp.id=Org2MSP"
+      - "--others.peer.endpoint=localhost:9051"
+      - "--server.port=8092"
+    ports:
+      - "8092:8092"
+    network_mode: "host"
+  leadAggregator:
+    container_name: leadAggregator.org2.example.com
+    image: dist-fed-gateway:latest
+    labels:
+      service: leadAggregator-dist-fed-gateway
+    volumes:
+      - ${DIST_FED_GATEWAY_CREDENTIAL_HOME}:/credential
+    command:
+      - "--fl.role=leadAggregator"
+      - "--others.cert.path=/credential/org2.example.com/users/LeadAggregator1@org2.example.com/msp/signcerts/cert.pem"
+      - "--others.key-dir.path=/credential/org2.example.com/users/LeadAggregator1@org2.example.com/msp/keystore"
+      - "--others.tls-cert.path=/credential/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
+      - "--others.organization=org2.example.com"
+      - "--others.msp.id=Org2MSP"
+      - "--others.peer.endpoint=localhost:9051"
+      - "--server.port=8082"
+    ports:
+      - "8082:8082"
+    network_mode: "host"
+  flAdmin:
+    container_name: admin.org2.example.com
+    image: dist-fed-gateway:latest
+    labels:
+      service: admin-dist-fed-gateway
+    volumes:
+      - ${DIST_FED_GATEWAY_CREDENTIAL_HOME}:/credential
+    command:
+      - "--fl.role=flAdmin"
+      - "--others.cert.path=/credential/org2.example.com/users/flAdmin1@org2.example.com/msp/signcerts/cert.pem"
+      - "--others.key-dir.path=/credential/org2.example.com/users/flAdmin1@org2.example.com/msp/keystore"
+      - "--others.tls-cert.path=/credential/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
+      - "--others.organization=org2.example.com"
+      - "--others.msp.id=Org2MSP"
+      - "--others.peer.endpoint=localhost:9051"
+      - "--server.port=8083"
+    ports:
+      - "8083:8083"
     network_mode: "host"

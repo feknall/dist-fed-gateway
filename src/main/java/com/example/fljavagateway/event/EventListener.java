@@ -9,10 +9,12 @@ import org.hyperledger.fabric.client.Network;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.CompletableFuture;
 
+@Configuration
 public class EventListener {
     private final Logger logger = LoggerFactory.getLogger(EventListener.class);
     private final WebSocketEventProcessor webSocketEventProcessor;
@@ -24,9 +26,9 @@ public class EventListener {
     }
 
     @Bean
-    public CloseableIterator<ChaincodeEvent> listen(Settings settings) {
+    public CloseableIterator<ChaincodeEvent> listen() {
         logger.info("Start listening for events...");
-        var eventIter = network.getChaincodeEvents(settings.getChaincodeName());
+        var eventIter = network.getChaincodeEvents("dist-fed-chaincode");
         CompletableFuture.runAsync(() -> {
             eventIter.forEachRemaining(event -> {
                 CompletableFuture.runAsync(() -> {

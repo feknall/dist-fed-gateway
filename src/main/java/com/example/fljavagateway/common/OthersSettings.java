@@ -52,8 +52,6 @@ public class OthersSettings extends Settings {
         return mspId;
     }
 
-
-
     @Override
     public String getOrganization() {
         return organization;
