@@ -80,4 +80,11 @@ public class AdminBl {
         }
     }
 
+    public byte[] getEndRoundModel(String modelId) {
+        try {
+            return contract.evaluateTransaction("getEndRoundModel", modelId);
+        } catch (GatewayException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -52,4 +52,9 @@ public class FlAdminRest {
         return adminBl.getPersonalInfo();
     }
 
+    @GetMapping("/getEndRoundModel")
+    public byte[] getEndRoundModel(@RequestParam String modelId) {
+        return adminBl.getEndRoundModel(modelId);
+    }
+
 }
