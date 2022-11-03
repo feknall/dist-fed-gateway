@@ -2,7 +2,7 @@ version: "3.9"
 services:
   trainer01:
     container_name: trainer01.example.com
-    image: dist-fed-gateway:latest
+    image: hmaid/hyperledger:dist-fed-gateway
     labels:
       service: trainer-dist-fed-gateway
     volumes:
@@ -24,7 +24,7 @@ services:
     network_mode: "host"
   trainer02:
     container_name: trainer02.example.com
-    image: dist-fed-gateway:latest
+    image: hmaid/hyperledger:dist-fed-gateway
     labels:
       service: trainer-dist-fed-gateway
     volumes:
@@ -45,7 +45,7 @@ services:
     network_mode: "host"
   aggregatorOrg1:
     container_name: aggregator.org1.example.com
-    image: dist-fed-gateway:latest
+    image: hmaid/hyperledger:dist-fed-gateway
     labels:
       service: aggregator-dist-fed-gateway
     volumes:
@@ -64,7 +64,7 @@ services:
     network_mode: "host"
   aggregatorOrg2:
     container_name: aggregator.org2.example.com
-    image: dist-fed-gateway:latest
+    image: hmaid/hyperledger:dist-fed-gateway
     labels:
       service: aggregator-dist-fed-gateway
     volumes:
@@ -83,7 +83,7 @@ services:
     network_mode: "host"
   leadAggregator:
     container_name: leadAggregator.org2.example.com
-    image: dist-fed-gateway:latest
+    image: hmaid/hyperledger:dist-fed-gateway
     labels:
       service: leadAggregator-dist-fed-gateway
     volumes:
@@ -102,7 +102,7 @@ services:
     network_mode: "host"
   flAdmin:
     container_name: admin.org2.example.com
-    image: dist-fed-gateway:latest
+    image: hmaid/hyperledger:dist-fed-gateway
     labels:
       service: admin-dist-fed-gateway
     volumes:
