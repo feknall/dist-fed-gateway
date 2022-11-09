@@ -6,17 +6,17 @@ services:
     labels:
       service: trainer-dist-fed-gateway
     volumes:
-      # /home/hamid/Documents/fabric-samples/test-network/organizations/peerOrganizations
-      - ${DIST_FED_GATEWAY_CREDENTIAL_HOME}:/credential
+      # /home/hamid/Documents/fabric-samples/test-network/organizations
+      - ${DIST_FED_CREDENTIAL_HOME}:/credential
     command:
       - "--fl.role=trainer"
-      - "--trainer.org1.cert.path=/credential/org1.example.com/users/Trainer1@org1.example.com/msp/signcerts/cert.pem"
-      - "--trainer.org1.key-dir.path=/credential/org1.example.com/users/Trainer1@org1.example.com/msp/keystore"
-      - "--trainer.org1.tls-cert.path=/credential/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
+      - "--trainer.org1.cert.path=/credential/peerOrganizations/org1.example.com/users/Trainer1@org1.example.com/msp/signcerts/cert.pem"
+      - "--trainer.org1.key-dir.path=/credential/peerOrganizations/org1.example.com/users/Trainer1@org1.example.com/msp/keystore"
+      - "--trainer.org1.tls-cert.path=/credential/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
       - "--trainer.org1.organization=org1.example.com"
-      - "--trainer.org2.cert.path=/credential/org2.example.com/users/Trainer1@org2.example.com/msp/signcerts/cert.pem"
-      - "--trainer.org2.key-dir.path=/credential/org2.example.com/users/Trainer1@org2.example.com/msp/keystore"
-      - "--trainer.org2.tls-cert.path=/credential/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
+      - "--trainer.org2.cert.path=/credential/peerOrganizations/org2.example.com/users/Trainer1@org2.example.com/msp/signcerts/cert.pem"
+      - "--trainer.org2.key-dir.path=/credential/peerOrganizations/org2.example.com/users/Trainer1@org2.example.com/msp/keystore"
+      - "--trainer.org2.tls-cert.path=/credential/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
       - "--trainer.org2.organization=org2.example.com"
       - "--server.port=8080"
     ports:
@@ -31,13 +31,13 @@ services:
       - ${DIST_FED_GATEWAY_CREDENTIAL_HOME}:/credential
     command:
       - "--fl.role=trainer"
-      - "--trainer.org1.cert.path=/credential/org1.example.com/users/Trainer2@org1.example.com/msp/signcerts/cert.pem"
-      - "--trainer.org1.key-dir.path=/credential/org1.example.com/users/Trainer2@org1.example.com/msp/keystore"
-      - "--trainer.org1.tls-cert.path=/credential/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
+      - "--trainer.org1.cert.path=/credential/peerOrganizations/org1.example.com/users/Trainer2@org1.example.com/msp/signcerts/cert.pem"
+      - "--trainer.org1.key-dir.path=/credential/peerOrganizations/org1.example.com/users/Trainer2@org1.example.com/msp/keystore"
+      - "--trainer.org1.tls-cert.path=/credential/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
       - "--trainer.org1.organization=org1.example.com"
-      - "--trainer.org2.cert.path=/credential/org2.example.com/users/Trainer2@org2.example.com/msp/signcerts/cert.pem"
-      - "--trainer.org2.key-dir.path=/credential/org2.example.com/users/Trainer2@org2.example.com/msp/keystore"
-      - "--trainer.org2.tls-cert.path=/credential/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
+      - "--trainer.org2.cert.path=/credential/peerOrganizations/org2.example.com/users/Trainer2@org2.example.com/msp/signcerts/cert.pem"
+      - "--trainer.org2.key-dir.path=/credential/peerOrganizations/org2.example.com/users/Trainer2@org2.example.com/msp/keystore"
+      - "--trainer.org2.tls-cert.path=/credential/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
       - "--trainer.org2.organization=org2.example.com"
       - "--server.port=8081"
     ports:
@@ -52,9 +52,9 @@ services:
       - ${DIST_FED_GATEWAY_CREDENTIAL_HOME}:/credential
     command:
       - "--fl.role=aggregator"
-      - "--others.cert.path=/credential/org1.example.com/users/Aggregator1@org1.example.com/msp/signcerts/cert.pem"
-      - "--others.key-dir.path=/credential/org1.example.com/users/Aggregator1@org1.example.com/msp/keystore"
-      - "--others.tls-cert.path=/credential/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
+      - "--others.cert.path=/credential/peerOrganizations/org1.example.com/users/Aggregator1@org1.example.com/msp/signcerts/cert.pem"
+      - "--others.key-dir.path=/credential/peerOrganizations/org1.example.com/users/Aggregator1@org1.example.com/msp/keystore"
+      - "--others.tls-cert.path=/credential/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
       - "--others.organization=org1.example.com"
       - "--others.msp.id=Org1MSP"
       - "--others.peer.endpoint=localhost:7051"
@@ -71,9 +71,9 @@ services:
       - ${DIST_FED_GATEWAY_CREDENTIAL_HOME}:/credential
     command:
       - "--fl.role=aggregator"
-      - "--others.cert.path=/credential/org2.example.com/users/Aggregator1@org2.example.com/msp/signcerts/cert.pem"
-      - "--others.key-dir.path=/credential/org2.example.com/users/Aggregator1@org2.example.com/msp/keystore"
-      - "--others.tls-cert.path=/credential/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
+      - "--others.cert.path=/credential/peerOrganizations/org2.example.com/users/Aggregator1@org2.example.com/msp/signcerts/cert.pem"
+      - "--others.key-dir.path=/credential/peerOrganizations/org2.example.com/users/Aggregator1@org2.example.com/msp/keystore"
+      - "--others.tls-cert.path=/credential/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
       - "--others.organization=org2.example.com"
       - "--others.msp.id=Org2MSP"
       - "--others.peer.endpoint=localhost:9051"
@@ -90,9 +90,9 @@ services:
       - ${DIST_FED_GATEWAY_CREDENTIAL_HOME}:/credential
     command:
       - "--fl.role=leadAggregator"
-      - "--others.cert.path=/credential/org2.example.com/users/LeadAggregator1@org2.example.com/msp/signcerts/cert.pem"
-      - "--others.key-dir.path=/credential/org2.example.com/users/LeadAggregator1@org2.example.com/msp/keystore"
-      - "--others.tls-cert.path=/credential/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
+      - "--others.cert.path=/credential/peerOrganizations/org2.example.com/users/LeadAggregator1@org2.example.com/msp/signcerts/cert.pem"
+      - "--others.key-dir.path=/credential/peerOrganizations/org2.example.com/users/LeadAggregator1@org2.example.com/msp/keystore"
+      - "--others.tls-cert.path=/credential/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
       - "--others.organization=org2.example.com"
       - "--others.msp.id=Org2MSP"
       - "--others.peer.endpoint=localhost:9051"
@@ -109,9 +109,9 @@ services:
       - ${DIST_FED_GATEWAY_CREDENTIAL_HOME}:/credential
     command:
       - "--fl.role=flAdmin"
-      - "--others.cert.path=/credential/org2.example.com/users/flAdmin1@org2.example.com/msp/signcerts/cert.pem"
-      - "--others.key-dir.path=/credential/org2.example.com/users/flAdmin1@org2.example.com/msp/keystore"
-      - "--others.tls-cert.path=/credential/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
+      - "--others.cert.path=/credential/peerOrganizations/org2.example.com/users/flAdmin1@org2.example.com/msp/signcerts/cert.pem"
+      - "--others.key-dir.path=/credential/peerOrganizations/org2.example.com/users/flAdmin1@org2.example.com/msp/keystore"
+      - "--others.tls-cert.path=/credential/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
       - "--others.organization=org2.example.com"
       - "--others.msp.id=Org2MSP"
       - "--others.peer.endpoint=localhost:9051"
