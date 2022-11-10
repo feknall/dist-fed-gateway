@@ -93,7 +93,7 @@ public abstract class Settings {
         return NettyChannelBuilder.forTarget(getPeerEndpoint())
                 .sslContext(GrpcSslContexts.forClient().trustManager(tlsCert).build())
                 .overrideAuthority(overrideAuth)
-                .maxInboundMessageSize(4 * 4194304)
+                .maxInboundMessageSize(20 * 4194304)
                 .build();
     }
 
