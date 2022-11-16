@@ -13,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Conditional(IsAdminCondition.class)
@@ -61,14 +60,6 @@ public class AdminBl {
             return new ApiError(HttpStatus.FORBIDDEN, message, e).toResponseEntity();
         } catch (GatewayException | CommitException e) {
             return new ApiError(HttpStatus.BAD_REQUEST, e).toResponseEntity();
-        }
-    }
-
-    public byte[] getCheckInInfo() {
-        try {
-            return contract.evaluateTransaction("getCheckInInfo");
-        } catch (GatewayException e) {
-            throw new RuntimeException(e);
         }
     }
 

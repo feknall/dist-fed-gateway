@@ -15,9 +15,7 @@ import java.util.List;
 @Conditional(IsTrainerCondition.class)
 @Service
 public class TrainerBl {
-
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
     private final Contract trainerOrg1Contract;
     private final Contract trainerOrg2Contract;
     private final Contract trainerContract;
@@ -27,14 +25,6 @@ public class TrainerBl {
         this.trainerOrg1Contract = trainerOrg1Contract;
         this.trainerOrg2Contract = trainerOrg2Contract;
         this.trainerContract = contract;
-    }
-
-    public byte[] checkInTrainer() {
-        try {
-            return trainerContract.submitTransaction("checkInTrainer");
-        } catch (GatewayException | CommitException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public List<byte[]> addModelSecret(String modelId, String weights1, String weights2, String datasetSize) {

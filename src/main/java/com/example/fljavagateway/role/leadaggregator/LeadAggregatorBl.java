@@ -59,13 +59,6 @@ public class LeadAggregatorBl {
         }
     }
 
-    public byte[] checkInLeadAggregator() {
-        try {
-            return contract.submitTransaction("checkInLeadAggregator");
-        } catch (GatewayException | CommitException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public byte[] getPersonalInfo() {
         try {

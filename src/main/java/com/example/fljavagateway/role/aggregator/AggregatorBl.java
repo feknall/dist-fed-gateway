@@ -61,14 +61,6 @@ public class AggregatorBl {
         }
     }
 
-    public byte[] checkInAggregator() {
-        try {
-            return contract.submitTransaction("checkInAggregator");
-        } catch (GatewayException | CommitException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public byte[] getPersonalInfo() {
         try {
             return contract.evaluateTransaction("getPersonalInfo");

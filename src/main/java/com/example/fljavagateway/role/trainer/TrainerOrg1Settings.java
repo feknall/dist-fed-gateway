@@ -19,9 +19,7 @@ import java.security.cert.CertificateException;
 @Conditional(IsTrainerCondition.class)
 @Configuration
 public class TrainerOrg1Settings extends Settings {
-
     private final Logger logger = LoggerFactory.getLogger(TrainerOrg1Settings.class);
-
     @Value("${trainer.org1.cert.path}")
     private String certPath;
     @Value("${trainer.org1.key-dir.path}")

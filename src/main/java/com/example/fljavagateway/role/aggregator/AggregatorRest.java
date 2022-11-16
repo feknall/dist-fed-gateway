@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @Conditional(IsAggregatorCondition.class)
 @RestController
 @RequestMapping("/aggregator")
@@ -45,11 +43,6 @@ public class AggregatorRest {
     @GetMapping("/getModelSecretListForCurrentRound")
     public byte[] getModelSecretListForCurrentRound(@RequestParam String modelId) {
         return aggregatorBl.getModelSecretListForCurrentRound(modelId);
-    }
-
-    @PostMapping("/checkInAggregator")
-    public byte[] checkInAggregator() {
-        return aggregatorBl.checkInAggregator();
     }
 
     @GetMapping("/getPersonalInfo")

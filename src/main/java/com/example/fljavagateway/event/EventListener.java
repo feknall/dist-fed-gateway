@@ -1,6 +1,5 @@
 package com.example.fljavagateway.event;
 
-import com.example.fljavagateway.common.Settings;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 import org.hyperledger.fabric.client.ChaincodeEvent;

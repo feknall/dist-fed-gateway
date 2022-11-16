@@ -10,19 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @Conditional(IsAdminCondition.class)
 @RestController
 @RequestMapping("/flAdmin")
 public class FlAdminRest {
-    
     private final AdminBl adminBl;
-
     public FlAdminRest(AdminBl adminBl) {
         this.adminBl = adminBl;
     }
-
 
     @PostMapping("/initLedger")
     public byte[] initLedger() {
@@ -40,11 +35,6 @@ public class FlAdminRest {
                 modelMetadata.name(), modelMetadata.clientsPerRound(),
                 modelMetadata.secretsPerClient(),
                 modelMetadata.trainingRounds());
-    }
-
-    @GetMapping("/getCheckInInfo")
-    public byte[] getCheckInInfo() {
-        return adminBl.getCheckInInfo();
     }
 
     @GetMapping("/getPersonalInfo")

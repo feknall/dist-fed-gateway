@@ -44,13 +44,4 @@ public class GeneralRest {
         return generalBl.checkHasTrainerAttribute();
     }
 
-    @GetMapping("/getSelectedTrainersForCurrentRound")
-    public byte[] getSelectedTrainersForCurrentRound() {
-        return generalBl.getSelectedTrainersForCurrentRound();
-    }
-
-    @GetMapping("/checkIAmSelectedForRound")
-    public byte[] checkIAmSelectedForRound() {
-        return generalBl.checkIAmSelectedForRound();
-    }
 }

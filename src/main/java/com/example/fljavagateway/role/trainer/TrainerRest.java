@@ -15,18 +15,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/trainer")
 public class TrainerRest {
-    
     private final TrainerBl trainerBl;
-
     public TrainerRest(TrainerBl trainerBl) {
         this.trainerBl = trainerBl;
     }
-
-    @PostMapping("/checkInTrainer")
-    public byte[] checkInTrainer() {
-        return trainerBl.checkInTrainer();
-    }
-
 
     @PostMapping("/addModelSecret")
     public List<byte[]> addModelSecret(@RequestBody ModelSecret modelSecret) {

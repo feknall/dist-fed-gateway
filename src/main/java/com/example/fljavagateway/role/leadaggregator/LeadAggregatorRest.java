@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/leadAggregator")
 public class LeadAggregatorRest {
-
     private final LeadAggregatorBl leadAggregatorBl;
 
     public LeadAggregatorRest(LeadAggregatorBl leadAggregatorBl) {
@@ -44,11 +43,6 @@ public class LeadAggregatorRest {
     @GetMapping("/getAggregatedSecretListForCurrentRound")
     public byte[] getAggregatedSecretListForCurrentRound(@RequestParam String modelId) {
         return leadAggregatorBl.getAggregatedSecretListForCurrentRound(modelId);
-    }
-
-    @PostMapping("/checkInLeadAggregator")
-    public byte[] checkInLeadAggregator() {
-        return leadAggregatorBl.checkInLeadAggregator();
     }
 
     @GetMapping("/getPersonalInfo")
