@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 @Conditional(IsTrainerCondition.class)
 @Service
@@ -29,19 +32,39 @@ public class TrainerBl {
 
     public List<byte[]> addModelSecret(String modelId, String weights1, String weights2, String datasetSize) {
         logger.info(String.format("addModelSecret modelId: %s datasetSize: %s", modelId, datasetSize));
+
+        List<byte[]> list = new ArrayList<>();
+
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+        Runnable org1 = () -> {
+            try {
+                byte[] resp1 = trainerOrg1Contract.submitTransaction("addModelSecret", modelId, weights1, datasetSize);
+                list.add(resp1);
+                logger.info(String.format("addModelSecret modelId: %s datasetSize: %s, first was successful", modelId, datasetSize));
+            } catch (GatewayException | CommitException e) {
+                throw new RuntimeException(e);
+            }
+        };
+        Runnable org2 = () -> {
+            try {
+                byte[] resp2 = trainerOrg2Contract.submitTransaction("addModelSecret", modelId, weights2, datasetSize);
+                list.add(resp2);
+                logger.info(String.format("addModelSecret modelId: %s datasetSize: %s, second was successful", modelId, datasetSize));
+            } catch (GatewayException | CommitException e) {
+                throw new RuntimeException(e);
+            }
+        };
+
+        executor.submit(org1);
+        executor.submit(org2);
+        executor.shutdown();
+
         try {
-            List<byte[]> list = new ArrayList<>();
-
-            byte[] resp1 = trainerOrg1Contract.submitTransaction("addModelSecret", modelId, weights1, datasetSize);
-            list.add(resp1);
-
-            byte[] resp2 = trainerOrg2Contract.submitTransaction("addModelSecret", modelId, weights2, datasetSize);
-            list.add(resp2);
-
-            return list;
-        } catch (GatewayException | CommitException e) {
-            throw new RuntimeException(e);
+            executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+        } catch (InterruptedException e) {
+            logger.debug("Task executor failed.");
         }
+        return list;
     }
 
     public byte[] getEndRoundModel(String modelId) {
