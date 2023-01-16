@@ -81,7 +81,6 @@ public class OthersSettings extends Settings {
         return tlsCertPath;
     }
 
-
     @Bean(name = "contract")
     @Override
     public Contract getContract(Network network) {

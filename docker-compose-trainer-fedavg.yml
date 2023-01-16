@@ -8,6 +8,7 @@ services:
     volumes:
       - ${DIST_FED_CREDENTIAL_HOME}:/credential
     command:
+      - "--fl.chaincode.name=fedavg-chaincode"
       - "--fl.role=trainer"
       - "--trainer.org1.cert.path=/credential/peerOrganizations/org1.example.com/users/Trainer1@org1.example.com/msp/signcerts/cert.pem"
       - "--trainer.org1.key-dir.path=/credential/peerOrganizations/org1.example.com/users/Trainer1@org1.example.com/msp/keystore"
@@ -29,6 +30,7 @@ services:
     volumes:
       - ${DIST_FED_CREDENTIAL_HOME}:/credential
     command:
+      - "--fl.chaincode.name=fedavg-chaincode"
       - "--fl.role=trainer"
       - "--trainer.org1.cert.path=/credential/peerOrganizations/org1.example.com/users/Trainer2@org1.example.com/msp/signcerts/cert.pem"
       - "--trainer.org1.key-dir.path=/credential/peerOrganizations/org1.example.com/users/Trainer2@org1.example.com/msp/keystore"
@@ -50,6 +52,7 @@ services:
     volumes:
       - ${DIST_FED_CREDENTIAL_HOME}:/credential
     command:
+      - "--fl.chaincode.name=fedavg-chaincode"
       - "--fl.role=trainer"
       - "--trainer.org1.cert.path=/credential/peerOrganizations/org1.example.com/users/Trainer3@org1.example.com/msp/signcerts/cert.pem"
       - "--trainer.org1.key-dir.path=/credential/peerOrganizations/org1.example.com/users/Trainer3@org1.example.com/msp/keystore"
@@ -71,6 +74,7 @@ services:
     volumes:
       - ${DIST_FED_CREDENTIAL_HOME}:/credential
     command:
+      - "--fl.chaincode.name=fedavg-chaincode"
       - "--fl.role=trainer"
       - "--trainer.org1.cert.path=/credential/peerOrganizations/org1.example.com/users/Trainer4@org1.example.com/msp/signcerts/cert.pem"
       - "--trainer.org1.key-dir.path=/credential/peerOrganizations/org1.example.com/users/Trainer4@org1.example.com/msp/keystore"

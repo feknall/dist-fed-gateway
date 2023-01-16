@@ -25,11 +25,6 @@ public class LeadAggregatorRest {
                 endRoundModel.weights());
     }
 
-    @GetMapping("/readAggregatedModelUpdate")
-    public byte[] readAggregatedModelUpdate(@RequestParam String modelId, @RequestParam String round) {
-        return leadAggregatorBl.readAggregatedModelUpdate(modelId, round);
-    }
-
     @GetMapping("/checkAllAggregatedSecretsReceived")
     public byte[] checkAllAggregatedSecretsReceived(@RequestParam String modelId) {
         return leadAggregatorBl.checkAllAggregatedSecretsReceived(modelId);

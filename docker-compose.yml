@@ -8,6 +8,7 @@ services:
     volumes:
       - ${DIST_FED_CREDENTIAL_HOME}:/credential
     command:
+      - "--fl.chaincode.name=dist-fed-chaincode"
       - "--fl.role=aggregator"
       - "--others.cert.path=/credential/peerOrganizations/org1.example.com/users/Aggregator1@org1.example.com/msp/signcerts/cert.pem"
       - "--others.key-dir.path=/credential/peerOrganizations/org1.example.com/users/Aggregator1@org1.example.com/msp/keystore"
@@ -27,6 +28,7 @@ services:
     volumes:
       - ${DIST_FED_CREDENTIAL_HOME}:/credential
     command:
+      - "--fl.chaincode.name=dist-fed-chaincode"
       - "--fl.role=aggregator"
       - "--others.cert.path=/credential/peerOrganizations/org2.example.com/users/Aggregator1@org2.example.com/msp/signcerts/cert.pem"
       - "--others.key-dir.path=/credential/peerOrganizations/org2.example.com/users/Aggregator1@org2.example.com/msp/keystore"
@@ -46,6 +48,7 @@ services:
     volumes:
       - ${DIST_FED_CREDENTIAL_HOME}:/credential
     command:
+      - "--fl.chaincode.name=dist-fed-chaincode"
       - "--fl.role=leadAggregator"
       - "--others.cert.path=/credential/peerOrganizations/org2.example.com/users/LeadAggregator1@org2.example.com/msp/signcerts/cert.pem"
       - "--others.key-dir.path=/credential/peerOrganizations/org2.example.com/users/LeadAggregator1@org2.example.com/msp/keystore"
@@ -65,6 +68,7 @@ services:
     volumes:
       - ${DIST_FED_CREDENTIAL_HOME}:/credential
     command:
+      - "--fl.chaincode.name=dist-fed-chaincode"
       - "--fl.role=flAdmin"
       - "--others.cert.path=/credential/peerOrganizations/org2.example.com/users/flAdmin1@org2.example.com/msp/signcerts/cert.pem"
       - "--others.key-dir.path=/credential/peerOrganizations/org2.example.com/users/flAdmin1@org2.example.com/msp/keystore"

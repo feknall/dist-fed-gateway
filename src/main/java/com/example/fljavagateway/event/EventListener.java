@@ -7,6 +7,7 @@ import org.hyperledger.fabric.client.CloseableIterator;
 import org.hyperledger.fabric.client.Network;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,6 +20,9 @@ public class EventListener {
     private final WebSocketEventProcessor webSocketEventProcessor;
     private final Network network;
 
+    @Value("${fl.chaincode.name}")
+    public String chaincodeName;
+
     public EventListener(WebSocketEventProcessor webSocketEventProcessor, Network network) {
         this.webSocketEventProcessor = webSocketEventProcessor;
         this.network = network;
@@ -26,8 +30,8 @@ public class EventListener {
 
     @Bean
     public CloseableIterator<ChaincodeEvent> listen() {
-        logger.info("Start listening for events...");
-        var eventIter = network.getChaincodeEvents("dist-fed-chaincode");
+        logger.info("Start listening for events from " + chaincodeName);
+        var eventIter = network.getChaincodeEvents(chaincodeName);
         CompletableFuture.runAsync(() -> {
             eventIter.forEachRemaining(event -> {
                 CompletableFuture.runAsync(() -> {

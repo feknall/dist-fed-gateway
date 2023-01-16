@@ -1,0 +1,43 @@
+version: "3.9"
+services:
+  leadAggregator:
+    container_name: fedavg-aggregator
+    image: hmaid/hyperledger:dist-fed-gateway
+    labels:
+      service: leadAggregator-dist-fed-gateway
+    volumes:
+      - ${DIST_FED_CREDENTIAL_HOME}:/credential
+    command:
+      - "--fl.chaincode.name=fedavg-chaincode"
+      - "--fl.role=leadAggregator"
+      - "--others.cert.path=/credential/peerOrganizations/org2.example.com/users/LeadAggregator1@org2.example.com/msp/signcerts/cert.pem"
+      - "--others.key-dir.path=/credential/peerOrganizations/org2.example.com/users/LeadAggregator1@org2.example.com/msp/keystore"
+      - "--others.tls-cert.path=/credential/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
+      - "--others.organization=org2.example.com"
+      - "--others.msp.id=Org2MSP"
+      - "--others.peer.endpoint=localhost:9051"
+      - "--server.port=8082"
+    ports:
+      - "8082:8082"
+    network_mode: "host"
+  flAdmin:
+    container_name: fedavg-admin
+    image: hmaid/hyperledger:dist-fed-gateway
+    labels:
+      service: admin-dist-fed-gateway
+    volumes:
+      - ${DIST_FED_CREDENTIAL_HOME}:/credential
+    command:
+      - "--fl.chaincode.name=fedavg-chaincode"
+      - "--fl.role=flAdmin"
+      - "--others.cert.path=/credential/peerOrganizations/org2.example.com/users/flAdmin1@org2.example.com/msp/signcerts/cert.pem"
+      - "--others.key-dir.path=/credential/peerOrganizations/org2.example.com/users/flAdmin1@org2.example.com/msp/keystore"
+      - "--others.tls-cert.path=/credential/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
+      - "--others.organization=org2.example.com"
+      - "--others.msp.id=Org2MSP"
+      - "--others.peer.endpoint=localhost:9051"
+      - "--server.port=8083"
+    ports:
+      - "8083:8083"
+    network_mode: "host"
+
