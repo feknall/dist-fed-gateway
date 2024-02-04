@@ -1,7 +1,11 @@
 #!/bin/bash
 
-echo "Trainer1..."
-nohup /home/hamid/.jdks/openjdk-18.0.2/bin/java -jar build/libs/fl-java-gateway-0.0.1-SNAPSHOT.jar --server.port=8080 --fl.user=Trainer1 &>trainer1.log &
+for INDEX in {0..3}
+do
+  PORT=$((6001+${INDEX}))
+  echo "Trainer1..."
+  nohup /home/hamid/.jdks/openjdk-18.0.2/bin/java -jar build/libs/fl-java-gateway-0.0.1-SNAPSHOT.jar --server.port=${PORT} --fl.user=Trainer1 &>trainer1.log &
+done
 
 echo "Trainer2..."
 nohup /home/hamid/.jdks/openjdk-18.0.2/bin/java -jar build/libs/fl-java-gateway-0.0.1-SNAPSHOT.jar --server.port=8081 --fl.user=Trainer2 &>trainer2.log &
